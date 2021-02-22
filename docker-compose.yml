@@ -1,0 +1,11 @@
+version: '3.9'
+
+services: 
+  web:
+    image: dany165/django_dev
+    container_name: django_dev
+    build: .
+    ports: 
+    - 8080:8080
+    command: python3 manage.py runserver 0.0.0.0:8080
+
