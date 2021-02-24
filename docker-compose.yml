@@ -5,7 +5,23 @@ services:
     image: dany165/django_dev
     container_name: django_dev
     build: .
+    volumes:
+     - .:/src/django_dev
     ports: 
-    - 8080:8080
+     - 8080:8080
     command: python3 manage.py runserver 0.0.0.0:8080
+  
+  db-prostgres:
+    image: library/postgres:13
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_USE: "user"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "django_dev"
+
+volumes:
+  postgres_data:
 
